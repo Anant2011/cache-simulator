@@ -94,16 +94,8 @@ void accessData(unsigned long address)
 int main(int argc , char *argv[])
 {
   
-  char *tracefile;   //the variable will store the name of trace file
+  char *tracefile;   
   int opt;
-   // for detailed information about every cache access
-//getopt extracts one option at a time from argv
-//keep extracting options from argv until there are no more options left   -- while function 
-//atoi stands for ASCII to integer    
-//getopt()only processes options starting with - numbers after them are not seperate iterations
-//internally opt ='s' optarg = "4"
-//optarg gives string
-//"s:E:b:t:vh"  called the option string it tells which otion your program accepts and whether they need arguments, :colon means this option mush have a value
 while((opt = getopt(argc,argv,"vs:E:b:t:")) !=-1)
 {
     switch (opt)
