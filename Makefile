@@ -1,5 +1,5 @@
 #
-# Student makefile for Cache Lab
+
 # Note: requires a 64-bit x86-64 system 
 #
 CC = gcc
