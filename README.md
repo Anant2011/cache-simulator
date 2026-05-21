@@ -1,4 +1,4 @@
-# Cache Lab – Cache Simulator & Cache-Optimized Matrix Transpose
+# Cache Simulator & Cache-Optimized Matrix Transpose
 
 A systems programming project implemented in C focused on understanding cache behavior, memory hierarchy, and cache-aware performance optimization techniques.
 
@@ -67,7 +67,7 @@ The optimizations focus on:
 ## Project Structure
 
 ```text
-cache-lab/
+cache/
 │
 ├── csim.c
 ├── trans.c
