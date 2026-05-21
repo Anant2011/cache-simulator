@@ -1,59 +1,82 @@
 # Cache Lab – Cache Simulator & Cache-Optimized Matrix Transpose
 
-A systems programming project implemented in C focused on understanding cache behavior, memory hierarchy, and performance optimization techniques.
+A systems programming project implemented in C focused on understanding cache behavior, memory hierarchy, and cache-aware performance optimization techniques.
 
 ## Overview
 
-This project consists of:
+This project consists of two major components:
 
-- A configurable cache simulator implementing LRU replacement policy
-- Cache-efficient matrix transpose optimizations using locality-aware techniques
-
-The project explores key computer systems concepts such as:
-- Spatial locality
-- Temporal locality
-- Conflict misses
-- Blocking / tiling
-- Direct-mapped cache behavior
-
----
-
-## Features
-
-### Cache Simulator
+### 1. Cache Simulator
 Implemented a configurable cache simulator supporting:
 - Load (`L`)
 - Store (`S`)
 - Modify (`M`) operations
-- LRU eviction policy
 - Configurable cache parameters (`s`, `E`, `b`)
+- LRU replacement policy
 
-The simulator analyzes:
+The simulator processes memory traces and reports:
 - Cache hits
 - Cache misses
 - Evictions
 
-using memory trace files.
+---
+
+### 2. Cache-Optimized Matrix Transpose
+Implemented cache-efficient matrix transpose kernels optimized for:
+- 32×32 matrices
+- 64×64 matrices
+- 61×67 matrices
+
+The optimizations focus on:
+- Blocking / tiling
+- Spatial locality
+- Temporal locality
+- Conflict miss reduction
+- Cache-aware memory access patterns
 
 ---
 
-### Cache-Optimized Matrix Transpose
-Optimized matrix transpose kernels for improved cache performance by:
-- Using blocking techniques
-- Reducing conflict misses
-- Improving spatial and temporal locality
-- Minimizing cache misses for direct-mapped caches
+## Performance Results
 
-### Performance
-- Achieved fewer than **300 cache misses** for the 32×32 transpose benchmark.
+### 32×32 Matrix
+- Achieved fewer than **300 cache misses**
+
+### 64×64 Matrix
+- Achieved fewer than **1300 cache misses**
+- Reduced conflict misses using optimized block traversal and temporary buffering
+
+### 61×67 Matrix
+- Achieved fewer than **2000 cache misses**
+- Used non-square blocking strategies to improve cache locality
 
 ---
 
-## Files
+## Concepts Explored
+
+- Cache organization
+- Direct-mapped caches
+- LRU replacement policy
+- Spatial locality
+- Temporal locality
+- Conflict misses
+- Cache-aware programming
+- Memory hierarchy optimization
+
+---
+
+## Project Structure
 
 ```text
-csim.c        -> Cache simulator implementation
-trans.c       -> Cache-optimized transpose implementations
-cachelab.h    -> Header file
-Makefile      -> Build instructions
-traces/       -> Sample memory traces
+cache-lab/
+│
+├── csim.c
+├── trans.c
+├── cachelab.h
+├── Makefile
+├── README.md
+├── .gitignore
+│
+└── traces/
+    ├── yi.trace
+    ├── dave.trace
+    └── trans.trace
