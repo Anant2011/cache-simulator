@@ -1,54 +1,60 @@
 # Cache Simulator & Cache-Aware Matrix Optimization
 
-A computer architecture project implemented in C that models cache behavior through simulation and applies cache-aware optimization techniques to improve memory-system performance.
+A computer architecture project implemented in C exploring two fundamental aspects of cache performance: **cache simulation** and **cache-aware program optimization**. The project focuses on understanding memory hierarchy behavior and applying locality-driven techniques to improve performance.
 
 ---
 
 ## Overview
 
-This project consists of two major components:
+This project consists of two independent components:
 
-### 1. Cache Simulator
+### Part A — Cache Simulator
 
-Implemented a configurable cache simulator supporting:
+Implemented a configurable cache simulator that models the behavior of a cache memory system under different configurations.
 
-* Load (`L`)
-* Store (`S`)
-* Modify (`M`) operations
-* Configurable cache parameters (`s`, `E`, `b`)
-* LRU replacement policy
+Features:
 
-The simulator processes memory traces and reports:
+* Support for load (`L`), store (`S`), and modify (`M`) operations
+* Configurable cache parameters:
 
-* Cache hits
-* Cache misses
-* Evictions
+  * Number of set index bits (`s`)
+  * Associativity (`E`)
+  * Block offset bits (`b`)
+* LRU (Least Recently Used) replacement policy
+* Memory trace processing
+* Cache hit, miss, and eviction tracking
+
+The simulator provides insight into how cache configuration and memory-access patterns affect performance.
 
 ---
 
-### 2. Cache-Aware Matrix Transpose
+### Part B — Cache-Aware Matrix Transpose
 
-Implemented specialized matrix transpose kernels for:
+Implemented optimized matrix transpose kernels designed to minimize cache misses on a direct-mapped cache.
+
+Optimized for:
 
 * 32×32 matrices
 * 64×64 matrices
 * 61×67 matrices
 
-The optimizations focus on:
+Optimization techniques:
 
 * Blocking / tiling
-* Spatial locality
-* Temporal locality
+* Spatial locality optimization
+* Temporal locality optimization
 * Conflict miss reduction
 * Cache-aware memory access patterns
 
-By restructuring memory accesses and exploiting locality, the transpose kernels significantly reduce cache misses and improve memory-system performance.
+The goal was to restructure memory accesses to maximize cache utilization and reduce costly memory operations.
 
 ---
 
-## Cache Architecture
+## Cache Simulator
 
-A memory address is decomposed into:
+### Cache Organization
+
+The simulator models a cache using:
 
 ```text
 Memory Address
@@ -65,39 +71,57 @@ Memory Address
  Hit / Miss / Eviction
 ```
 
-The simulator models cache behavior using configurable set index bits (`s`), associativity (`E`), and block size (`b`).
+Each memory access is decomposed into tag, set index, and block offset fields to determine cache behavior.
 
 ---
 
-## LRU Replacement Policy
+### LRU Replacement Policy
 
-The simulator maintains recency information for each cache line and evicts the least recently used block when a set becomes full.
+When a cache set becomes full, the simulator evicts the least recently used block.
 
-This models realistic cache behavior and enables accurate hit/miss/eviction analysis across different cache configurations.
+This policy is implemented by maintaining recency information for each cache line and updating it after every access.
 
 ---
 
-## Performance Results
+### Output Metrics
+
+For every memory trace, the simulator reports:
+
+* Cache hits
+* Cache misses
+* Cache evictions
+
+These metrics help analyze the effectiveness of different cache configurations and memory-access patterns.
+
+---
+
+## Cache-Aware Matrix Optimization
+
+The transpose kernels were optimized specifically for cache performance rather than algorithmic complexity.
 
 ### 32×32 Matrix
 
+* Used blocking techniques to maximize cache locality
 * Achieved fewer than **300 cache misses**
 
 ### 64×64 Matrix
 
+* Reduced conflict misses through carefully designed block traversal
+* Used temporary storage strategies to avoid cache thrashing
 * Achieved fewer than **1300 cache misses**
-* Reduced conflict misses through optimized block traversal and temporary buffering
 
 ### 61×67 Matrix
 
+* Applied non-square blocking strategies
+* Improved locality across irregular matrix dimensions
 * Achieved fewer than **2000 cache misses**
-* Used non-square blocking strategies to improve cache locality
 
 ---
 
 ## Key Concepts Explored
 
 * Cache organization
+* Address decomposition
 * Direct-mapped caches
 * LRU replacement policy
 * Spatial locality
@@ -123,14 +147,12 @@ This models realistic cache behavior and enables accurate hit/miss/eviction anal
 
 ```text
 cache-simulator/
-│
+├── README.md
+├── Makefile
+├── cachelab.h
 ├── csim.c
 ├── trans.c
-├── cachelab.h
-├── Makefile
-├── README.md
 ├── .gitignore
-│
 └── examples/
     ├── 1.trace
     ├── long.trace
@@ -143,13 +165,13 @@ cache-simulator/
 
 Through this project I gained practical experience with:
 
-* Cache simulation and analysis
-* Address decomposition and cache organization
-* LRU replacement strategies
-* Memory hierarchy behavior
-* Locality-driven optimization
-* Performance-oriented systems programming
-* Cache-aware algorithm design
+* Designing and implementing a cache simulator
+* Modeling realistic cache behavior
+* Implementing LRU replacement policies
+* Analyzing memory-access traces
+* Understanding memory hierarchy performance
+* Applying locality-driven optimization techniques
+* Writing cache-efficient code
 
 ---
 
