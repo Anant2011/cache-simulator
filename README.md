@@ -131,9 +131,9 @@ cache-simulator/
 ├── README.md
 ├── .gitignore
 │
-└── traces/
-    ├── yi.trace
-    ├── dave.trace
+└── examples/
+    ├── 1.trace
+    ├── long.trace
     └── trans.trace
 ```
 
