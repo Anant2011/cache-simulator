@@ -75,13 +75,17 @@ Each memory access is decomposed into tag, set index, and block offset fields to
 
 ---
 
-### LRU Replacement Policy
 
-When a cache set becomes full, the simulator evicts the least recently used block.
 
-This policy is implemented by maintaining recency information for each cache line and updating it after every access.
+## LRU Replacement Policy
 
----
+The simulator implements the Least Recently Used (LRU) replacement policy using a global timestamp mechanism.
+
+Each cache line stores the time of its most recent access. On every memory operation, a global counter is incremented and the accessed cache line is updated with the current timestamp.
+
+When eviction is required, the cache line with the smallest timestamp (i.e., the least recently used line) is selected for replacement.
+
+This approach provides an efficient and intuitive implementation of LRU behavior while accurately modeling cache replacement decisions.
 
 ### Output Metrics
 
