@@ -12,12 +12,7 @@
 
 int is_transpose(int M, int N, int A[N][M], int B[M][N]);
 
-/* 
- * transpose_submit - This is the solution transpose function. Do not change
- *     the description string "Transpose submission", as the driver
- *     searches for that string to identify the transpose function to
- *     be graded. 
- */
+
 char transpose_submit_desc[] = "Transpose submission";
 void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 { 
@@ -151,8 +146,8 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 
 
 /* 
- * You can define additional transpose functions below. We've defined
- * a simple one below to help you get started. 
+ * You can define additional transpose functions below. I've defined
+ * a simple one below 
  */ 
 
 /* 
